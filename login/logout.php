@@ -32,11 +32,7 @@ $PAGE->set_context(context_system::instance());
 $sesskey = optional_param('sesskey', '__notpresent__', PARAM_RAW); // we want not null default to prevent required sesskey warning
 $login   = optional_param('loginpage', 0, PARAM_BOOL);
 
-if (!empty($SESSION->currenteditingcompany)) {
-    $currentcompanyid = $SESSION->currenteditingcompany;
-} else {
-    $currentcompanyid = 0;
-}
+
 
 $redirect = get_login_url();
 
