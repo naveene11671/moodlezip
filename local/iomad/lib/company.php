@@ -80,12 +80,12 @@ class company {
     public static function by_userid($userid, $login = false) {
         global $DB, $SESSION;
 
-        if (!$login && !empty($SESSION->currenteditingcompany)) {
-            return new company($SESSION->currenteditingcompany);
+if ($companies = $DB->get_records('company_users', array('userid' => $userid), 'companyid DESC')) {
+            $company = array_pop($companies);
+            return new company($company->companyid);
         } else {
-            if ($companies = $DB->get_records('company_users', array('userid' => $userid), 'companyid DESC')) {
-                $company = array_pop($companies);
-                return new company($company->companyid);
+            if (!empty($SESSION->currenteditingcompany)) {
+            return new company($SESSION->currenteditingcompany);
             } else {
                 return false;
             }
